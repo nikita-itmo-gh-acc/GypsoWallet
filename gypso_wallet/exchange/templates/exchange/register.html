@@ -1,0 +1,37 @@
+{% extends "exchange/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="{% static "exchange/css/registrationstyle.css" %}"/>
+{% endblock title %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+    <body>
+
+    <div class="central_separator"></div>
+    <div class="main_container">
+        <div class="registration_container">
+            <div class="registration_list">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+<!--                            {{field.label_tag}}-->
+                            <div class="password_container">
+                                {{field}}
+                            </div>
+                        {% endfor %}
+                        <div class="submit_registration">
+                            <label class="submit_label">
+                            <input type="submit" value="" name="file">
+                            <span>Зарегистрироваться</span>
+                            </label>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock content %}

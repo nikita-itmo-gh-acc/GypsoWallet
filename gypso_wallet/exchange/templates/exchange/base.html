@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        {% block title %} {% endblock title %}
+
+    </head>
+
+    <body>
+        <header class="header">
+        <div class="header_container">
+            <div class="header_inner">
+                <a href="/">
+                    <div class="header_logo"></div></a>
+                <div class="header_title">{{ head_title }}</div>
+                <div class="header_profile">
+                    <div class="header_balance">Баланс: 500$</div>
+                    <div class="header_separator"></div>
+                    <a href="./profile.html">
+                        <div class="header_avatar"></div></a>
+                </div>
+            </div>
+        </div>
+        {% block header %}{% endblock header %}
+        </header>
+        {% block content%}{% endblock content %}
+    </body>
+</html>

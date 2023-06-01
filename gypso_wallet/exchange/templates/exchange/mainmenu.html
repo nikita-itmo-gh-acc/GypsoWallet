@@ -1,0 +1,26 @@
+{% extends "exchange/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>GeepsoWallet</title>
+    <link rel="stylesheet" type="text/css" href="{% static "exchange/css/mainmenustyle.css" %}"/>
+{% endblock title %}
+
+
+{% block content %}
+    <body>
+        <div class="central_separator"></div>
+
+        <div class="main_body">
+            <div class="main_container">
+                <div class="main_list">
+                    <div class="dots">...</div>
+                    <div class="to_krypto"><a href="./market.html">Криптобиржа</a></div>
+                    <div class="to_market"><a href="./krypto.html">Рынок</a></div>
+                    <div class="registration"><a href="./registration">Регистрация</a></div>
+                </div>
+                <div class="main_logo"></div>
+            </div>
+        </div>
+    </body>
+{% endblock content %}
