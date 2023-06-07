@@ -13,12 +13,28 @@
                 <a href="/">
                     <div class="header_logo"></div></a>
                 <div class="header_title">{{ head_title }}</div>
-                <div class="header_profile">
-                    <div class="header_balance">Баланс: 500$</div>
-                    <div class="header_separator"></div>
-                    <a href="./profile.html">
-                        <div class="header_avatar"></div></a>
-                </div>
+                {% if user %}
+                    <div class="header_profile">
+                        <div class="header_logout"> <a href="../logout" class="header_link"> Выход </a> </div>
+                        <div class="header_balance">Баланс: 500$</div>
+                        <div class="header_separator"></div>
+                        <div class="header_avatar">
+                        <a href="../profile/">
+                                {% if user.profile.photo %}
+                                    <img class="header_avatar_base" src="{{ user.profile.photo.url }}">
+                                {% else %}
+                                    <div class="header_stock_im"></div>
+                                {% endif %}
+                        </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="header_auth">
+                        <div class="header_reg"> <a href="../registration" class="header_link"> Регистрация </a> </div>
+                        <div class="header_separator"></div>
+                        <div class="header_log"> <a href="../login" class="header_link"> Вход </a> </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
         {% block header %}{% endblock header %}

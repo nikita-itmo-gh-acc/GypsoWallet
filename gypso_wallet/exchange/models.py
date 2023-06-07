@@ -11,7 +11,7 @@ class Profile(models.Model):
     # email = models.CharField(max_length=255, unique=True)
     # password = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    photo = models.ImageField(height_field=150, width_field=150)
+    photo = models.ImageField(blank=True)
     reg_date = models.DateTimeField(auto_now_add=True)
 
     @receiver(post_save, sender=User)

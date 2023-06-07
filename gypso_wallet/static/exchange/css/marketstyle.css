@@ -42,7 +42,7 @@ body {
     padding-top: 7px;
     padding-inline: 10px;
     background-color: #07BEB8;
-    border-radius: 15px 0 0 15px;
+    /*border-radius: 15px 0 0 15px;*/
 }
 .header_separator {
     height: 40px;
@@ -50,7 +50,7 @@ body {
     float: left;
     background-color: #07BEB8;
 }
-.header_avatar {
+.header_stock_im {
     height: 40px;
     width: 40px;
     float: left;
@@ -59,6 +59,85 @@ body {
     background-image: url("../assets/images/user_avatar.png");
     background-position: center;
     background-size: cover;
+}
+
+.header_avatar_base {
+    height: 40px;
+    width: 40px;
+    float: left;
+    margin-left: 5px;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.header_profile {
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+}
+
+.header_auth{
+    /*border: solid;*/
+    display: flex;
+    justify-content: center;
+    width: 25%;
+}
+
+.header_reg{
+    display: block;
+    float: left;
+    margin-right: 20px;
+    border-radius: 5px 0 0 5px;
+    background-color: #07BEB8;
+    padding-top: 7px;
+    padding-inline: 10px;
+    font-size: 20px;
+}
+
+.header_log{
+    display: block;
+    float: left;
+    margin-left: 20px;
+    border-radius: 0 5px 5px 0;
+    background-color: #07BEB8;
+    padding-top: 7px;
+    padding-inline: 10px;
+    font-size: 20px;
+}
+
+.header_logout{
+    width: auto;
+    float: left;
+    font-size: 20px;
+    text-align: left;
+    margin-right: 5px;
+    padding-top: 7px;
+    padding-inline: 10px;
+    background-color: #07BEB8;
+    border-radius: 5px 0 0 5px;
+}
+
+.header_avatar{
+    display: block;
+    margin-right: 30px;
+}
+
+.header_link {
+    text-decoration: none;
+    color: black;
+}
+
+.header_log:hover {
+    border: 2px solid black;
+}
+
+.header_reg:hover {
+    border: 2px solid black;
+}
+
+.header_logout:hover {
+    border: 2px solid black;
 }
 
 

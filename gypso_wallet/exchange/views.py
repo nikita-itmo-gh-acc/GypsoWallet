@@ -16,28 +16,28 @@ from django.contrib.auth.decorators import login_required
 class Home(View):
 
     def get(self, request, *args, **kwargs):
-        return render(request, "exchange/mainmenu.html")
+        u = None
+        if request.user.is_authenticated:
+            u = request.user
+        return render(request, "exchange/mainmenu.html", {"user": u})
 
 
 def registration(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            name = form.data["login"]
-            email = form.data["email"]
+            new_user = form.save(commit=False)
             password = form.data["password"]
-            password_repeat = form.data["password_repeat"]
-            if password == password_repeat:
-                new_user = User(username=name, email=email, password=password)
-                new_user.save()
-                new_user.refresh_from_db()
-                new_user.profile.description = "test profile is working"
-                new_user.save()
-                login(request, new_user)
-                return redirect("home", permanent=True)
+            new_user.set_password(password)
+            new_user.save()
+            # new_user.refresh_from_db()
+            # new_user.profile.description = "test profile is working 2"
+            # new_user.save()
+            login(request, new_user)
+            return redirect("home", permanent=True)
     else:
         form = RegisterForm()
-    return render(request, "exchange/register.html", {"form": form})
+    return render(request, "exchange/register.html", {"form": form, "user": None})
 
 
 def login_view(request):
@@ -57,11 +57,12 @@ def login_view(request):
                 return render(request, "exchange/login.html", {"form": form})
     else:
         form = LoginForm()
-        return render(request, "exchange/login.html", {"form": form})
+        return render(request, "exchange/login.html", {"form": form, "user": None})
 
 
 def logout_view(request):
     logout(request)
+    return redirect("home", permanent=True)
 
 
 def page_not_found(request, exception):
@@ -70,5 +71,20 @@ def page_not_found(request, exception):
 
 @login_required
 def profile(request):
-    print(request.user.username)
-    return render(request, "exchange/profile.html")
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            profile_image, desc = form.cleaned_data["photo"], form.cleaned_data["description"]
+            u = request.user
+            if profile_image:
+                u.profile.photo = profile_image
+            u.profile.description = desc
+            u.save()
+        else:
+            form.add_error("description", "Форма некорректна")
+    # print(request.user.username)
+    else:
+        form = ProfileForm(initial={"description": request.user.profile.description,
+                                    })
+    return render(request, "exchange/profile.html", {"form": form, "user": request.user})
