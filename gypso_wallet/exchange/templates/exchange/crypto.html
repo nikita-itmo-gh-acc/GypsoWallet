@@ -1,0 +1,32 @@
+
+
+{% extends "exchange/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Профиль</title>
+    <link rel="stylesheet" type="text/css" href="{% static "exchange/css/cryptostyle.css" %}"/>
+{% endblock title %}
+
+
+{% block content %}
+    <body>
+
+    <div class="central_separator"></div>
+
+    <div class="main_body">
+        <div class="main_container">
+            <div class="price_list">
+                <div class="price_title">Цены</div>
+                <div class="price_table"></div>
+            </div>
+            <div class="main_separator"></div>
+            <div class="graph_list">
+                <div class="graph_title">Графики</div>
+                <div class="graph_table"></div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+{% endblock content %}

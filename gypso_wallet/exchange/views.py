@@ -6,25 +6,25 @@ from exchange.forms import *
 from django.views.generic import View, ListView
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
-
-
-# Create your views here.
-# def index(request):
-#     return render(request, "mainmenu.html")
+from django.utils.decorators import method_decorator
 
 
 class Home(View):
+    template_name = "exchange/mainmenu.html"
 
     def get(self, request, *args, **kwargs):
         u = None
         if request.user.is_authenticated:
             u = request.user
-        return render(request, "exchange/mainmenu.html", {"user": u})
+        return render(request, self.template_name, {"user": u})
 
 
-def registration(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
+class Registration(View):
+    form_class = RegisterForm
+    template_name = 'exchange/register.html'
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             new_user = form.save(commit=False)
             password = form.data["password"]
@@ -35,14 +35,20 @@ def registration(request):
             # new_user.save()
             login(request, new_user)
             return redirect("home", permanent=True)
-    else:
-        form = RegisterForm()
-    return render(request, "exchange/register.html", {"form": form, "user": None})
+        form.add_error("password_repeat", "Ошибка регистрации")
+        return render(request, self.template_name, {"form": form})
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {"form": form, "user": None})
 
 
-def login_view(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
+class Login(View):
+    form_class = LoginForm
+    template_name = 'exchange/login.html'
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             name = form.data["login"]
             password = form.data["password"]
@@ -54,10 +60,11 @@ def login_view(request):
                 return redirect("home", permanent=True)
             else:
                 form.add_error("password", "Ошибка авторизации")
-                return render(request, "exchange/login.html", {"form": form})
-    else:
-        form = LoginForm()
-        return render(request, "exchange/login.html", {"form": form, "user": None})
+                return render(request, self.template_name, {"form": form})
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {"form": form, "user": None})
 
 
 def logout_view(request):
@@ -69,10 +76,14 @@ def page_not_found(request, exception):
     return HttpResponseNotFound("page not found")
 
 
-@login_required
-def profile(request):
-    if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES)
+# @method_decorator(login_required, name="post")
+@method_decorator(login_required, name='dispatch')
+class ProfileView(View):
+    form_class = ProfileForm
+    template_name = 'exchange/profile.html'
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             print(form.cleaned_data)
             profile_image, desc = form.cleaned_data["photo"], form.cleaned_data["description"]
@@ -83,8 +94,17 @@ def profile(request):
             u.save()
         else:
             form.add_error("description", "Форма некорректна")
+        return render(request, self.template_name, {"form": form, "user": request.user})
+
     # print(request.user.username)
-    else:
-        form = ProfileForm(initial={"description": request.user.profile.description,
-                                    })
-    return render(request, "exchange/profile.html", {"form": form, "user": request.user})
+    def get(self, request):
+        form = self.form_class(initial={"description": request.user.profile.description, })
+        return render(request, self.template_name, {"form": form, "user": request.user})
+
+
+@method_decorator(login_required, name='dispatch')
+class Crypto(View):
+    template_name = 'exchange/crypto.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {"user": request.user})
