@@ -1,11 +1,12 @@
 from django import forms
 from exchange.models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
-class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))
-    password_repeat = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Повторите пароль"}))
+class RegisterForm(UserCreationForm):
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Повторите пароль"}))
 
     class Meta:
         model = User
@@ -22,9 +23,17 @@ class RegisterForm(forms.ModelForm):
         return cd['password_repeat']
 
 
-class LoginForm(forms.Form):
-    login = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Логин"}))
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Логин"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))
+
+    def clean(self):
+        cd = self.cleaned_data
+        if not User.objects.filter(username=cd["username"]).exists():
+            self.add_error("username", "No such user")
+        elif not User.objects.filter(password=cd["password"]).exists():
+            self.add_error("password", "Wrong password")
+        return cd
 
 
 class ProfileForm(forms.ModelForm):
@@ -37,5 +46,3 @@ class ProfileForm(forms.ModelForm):
         widgets = {
             "description": forms.Textarea(attrs={"placeholder": "О себе", "form": "profile_form"})
         }
-
-

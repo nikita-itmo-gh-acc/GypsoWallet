@@ -1,12 +1,14 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest, HttpResponseNotFound
 from exchange.models import Profile
 from django.contrib.auth.models import User
 from exchange.forms import *
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, CreateView
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
 
 
 class Home(View):
@@ -19,52 +21,28 @@ class Home(View):
         return render(request, self.template_name, {"user": u})
 
 
-class Registration(View):
+class Registration(CreateView):
     form_class = RegisterForm
     template_name = 'exchange/register.html'
+    success_url = reverse_lazy("home")
 
-    def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            new_user = form.save(commit=False)
-            password = form.data["password"]
-            new_user.set_password(password)
-            new_user.save()
-            # new_user.refresh_from_db()
-            # new_user.profile.description = "test profile is working 2"
-            # new_user.save()
-            login(request, new_user)
-            return redirect("home", permanent=True)
-        form.add_error("password_repeat", "Ошибка регистрации")
-        return render(request, self.template_name, {"form": form})
-
-    def get(self, request):
-        form = self.form_class()
-        return render(request, self.template_name, {"form": form, "user": None})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Регистрация"
+        return context
 
 
-class Login(View):
-    form_class = LoginForm
+class Login(LoginView):
+    authentication_form = LoginForm
     template_name = 'exchange/login.html'
 
-    def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            name = form.data["login"]
-            password = form.data["password"]
-            u = authenticate(username=name, password=password)
-            if u is not None:
-                login(request, u)
-                # p = User.objects.get(email=email)
-                # print(p.profile.reg_date)
-                return redirect("home", permanent=True)
-            else:
-                form.add_error("password", "Ошибка авторизации")
-                return render(request, self.template_name, {"form": form})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Авторизация"
+        return context
 
-    def get(self, request):
-        form = self.form_class()
-        return render(request, self.template_name, {"form": form, "user": None})
+    def get_success_url(self):
+        return reverse_lazy("home")
 
 
 def logout_view(request):
