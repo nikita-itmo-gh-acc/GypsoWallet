@@ -1,0 +1,146 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+body {
+    margin: 0;
+    background-color: #fafafa;
+    font-family: "Montserrat";
+}
+
+.header_container {
+    height: 50px;
+    background-color: white;
+}
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+.header_title {
+    font-size: 30px;
+}
+.header_logo {
+    height: 40px;
+    width: 40px;
+    margin-left: 13px;
+    background-image: url("../images/GeepsoWallet png.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 15px;
+}
+.header_profile {
+    width: auto;
+    margin-right: 5px;
+}
+.header_balance {
+    height: 33px;
+    width: auto;
+    float: left;
+    font-size: 20px;
+    text-align: left;
+    margin-right: 5px;
+    padding-top: 7px;
+    padding-inline: 10px;
+    background-color: #07BEB8;
+    border-radius: 15px 0 0 15px;
+}
+.header_separator {
+    height: 40px;
+    width: 2px;
+    float: left;
+    background-color: #07BEB8;
+}
+.header_avatar {
+    height: 40px;
+    width: 40px;
+    float: left;
+    margin-left: 5px;
+
+    background-image: url("../images/user_avatar.png");
+    background-position: center;
+    background-size: cover;
+}
+
+
+.central_separator {
+    height: 2px;
+    width: 100%;
+    margin: 0;
+    background-color: #07BEB8;
+}
+
+
+
+.main_container {
+    display: flex;
+    justify-content: normal;
+}
+
+.price_list {
+    width: 60%;
+    height: 100%;
+    min-height: 688px;
+    float: top;
+    margin: 50px 60px 0 50px;
+    position: relative;
+    text-align: center;
+}
+
+.price_title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.price_table {
+    height: 55%;
+    min-height: 758px;
+    width: 100%;
+    padding: 7px;
+
+    position: relative;
+    text-align: center;
+    background-color: #68D8D6;
+    border-radius: 15px;
+}
+
+
+
+.main_separator {
+    height: 859px;
+    width: 2px;
+
+    float: right;
+    margin-top: 20px;
+    background-color: #68D8D6;
+}
+
+.graph_list {
+    width: 100%;
+    height: 100%;
+    min-height: 688px;
+    max-height: 1000px;
+    max-width: 1900px;
+
+    text-align: center;
+    margin-top: 50px;
+    margin-inline: 50px;
+}
+
+.graph_title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.graph_table {
+    width: 100%;
+    height: 100%;
+    min-height: 772px;
+    max-height: 1000px;
+    max-width: 1900px;
+
+    background-color: #68D8D6;
+    border-radius: 15px;
+}

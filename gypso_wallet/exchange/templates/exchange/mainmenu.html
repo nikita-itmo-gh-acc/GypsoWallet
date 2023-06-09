@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>GeepsoWallet</title>
+    <link rel="stylesheet" href="{% static "exchange/css/mainmenustyle.css" %}"/>
+
+</head>
+<body>
+
+<header class="header">
+    <div class="header_container">
+        <div class="header_inner">
+            <div class="header_title">Главное меню</div>
+            <div class="header_profile">
+                <div class="header_separator"></div>
+                <a href="./profile.html">
+                    <div class="header_avatar"></div></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="central_separator"></div>
+
+<div class="main_body">
+    <div class="main_container">
+        <div class="main_list">
+            <div class="dots">...</div>
+            <div class="to_krypto"><a href="./market.html">Криптобиржа</a></div>
+            <div class="to_market"><a href="./krypto.html">Рынок</a></div>
+            <div class="registration"><a href="./registration.html">Регистрация</a></div>
+        </div>
+        <div class="main_logo"></div>
+    </div>
+</div>
+
+</body>
+</html>

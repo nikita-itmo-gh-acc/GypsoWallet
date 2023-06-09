@@ -1,0 +1,236 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+body {
+    margin: 0;
+    background-color: #fafafa;
+    font-family: "Montserrat";
+}
+
+.header_container {
+
+    height: 50px;
+    background-color: white;
+}
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+.header_title {
+    font-size: 30px;
+}
+.header_logo {
+    height: 40px;
+    width: 40px;
+    margin-left: 13px;
+    background-image: url("../images/GeepsoWallet png.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 15px;
+}
+.header_profile {
+    width: auto;
+    margin-right: 5px;
+}
+.header_balance {
+    height: 33px;
+    width: auto;
+    float: left;
+    font-size: 20px;
+    text-align: left;
+    margin-right: 5px;
+    padding-top: 7px;
+    padding-inline: 10px;
+    background-color: #07BEB8;
+    border-radius: 15px 0 0 15px;
+}
+.header_separator {
+    height: 40px;
+    width: 2px;
+    float: left;
+    background-color: #07BEB8;
+}
+.header_avatar {
+    height: 40px;
+    width: 40px;
+    float: left;
+    margin-left: 5px;
+
+    background-image: url("../images/user_avatar.png");
+    background-position: center;
+    background-size: cover;
+}
+
+
+.central_separator {
+    height: 2px;
+    width: 100%;
+    margin: 0;
+    background-color: #07BEB8;
+}
+
+.main_container {
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+    top: 50px;
+    right: 4.5%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+
+}
+
+.registration_container {
+    height: 44%;
+    width: 50%;
+    min-height: 400px;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.registration_list {
+    height: 80%;
+    width: 90%;
+    position: relative;
+    float: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.mail_container input {
+    height: 35px;
+    width: 95%;
+    margin: 0px 10px 0px 10px;
+    padding: 20px 10px 20px 0;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 25px;
+    background-color: #68D8D625;
+    border: 1px solid black;
+}
+
+input::placeholder {
+    color: #00000075;
+}
+
+.password_container input {
+    height: 35px;
+    width: 95%;
+    margin: 15px 10px 0 10px;
+    padding: 20px 10px 20px 0;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 25px;
+    background-color: #68D8D625;
+    border: 1px solid black;
+}
+
+.repeat_password_container input {
+    height: 35px;
+    width: 95%;
+    margin: 15px 10px 0 10px;
+    padding: 20px 10px 20px 0;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+
+    text-align: center;
+
+    font-size: 25px;
+    background-color: #68D8D625;
+    border: 1px solid black;
+}
+
+
+.submit_registration {
+    margin: 20px 10px 0 10px;
+    height: 15%;
+    max-height: 50px;
+    width: 300px;
+    padding: 10px 0 10px 0;
+    position: relative;
+    align-self: center;
+    text-align: center;
+    background-color: #C4FFF9;
+    border: 1px solid black;
+    border-radius: 40px;
+
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.submit_registration span {
+    height: 100%;
+    width: 100%;
+    line-height: 22px;
+
+    padding: 10px 20px;
+
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 20px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 40px;
+    box-sizing: border-box;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.submit_registration input[type=submit] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.submit_registration input[type=submit]:focus + span {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.submit_registration:hover span {
+    background-color: #9ceaef;
+}
+
+.submit_registration:active span {
+    background-color: #057672;
+}
+
+.submit_registration input[type=submit]:disabled + span {
+    background-color: #eee;
+}
