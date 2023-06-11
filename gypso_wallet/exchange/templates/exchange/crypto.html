@@ -17,16 +17,41 @@
     <div class="main_body">
         <div class="main_container">
             <div class="price_list">
-                <div class="price_title">Цены</div>
-                <div class="price_table"></div>
+                <div class="price_title">
+                    Цены
+                </div>
+                <div class="price_table">
+                    {% for item in crypto_data %}
+                        <div class="price_item">
+                            {{ item }}
+                            <select name="days" id="{{ item }}_days"></select>
+                            <input type="submit" value="Применить" class="settings" name="{{ item }}" id="{{ item }}_settings">
+                        </div>
+
+<!--                        <input value="Применить" name="settings">-->
+                    {% endfor %}
+                </div>
+
             </div>
             <div class="main_separator"></div>
             <div class="graph_list">
                 <div class="graph_title">Графики</div>
-                <div class="graph_table"></div>
+                <div class="graph_table">
+<!--                    <canvas id="chart" width="500" height="100"></canvas>-->
+                    {% for value in crypto_data %}
+<!--                        <p>{{ value }}</p>-->
+                        <div class="graph_item">
+                            <canvas id="{{value}}" width="500" height="100"></canvas>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
 
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+    <script src="{% static 'exchange/js/jquery-3.7.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'exchange/js/crypto.js' %}"> </script>
+
 {% endblock content %}

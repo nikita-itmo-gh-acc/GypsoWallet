@@ -29,10 +29,13 @@ class LoginForm(AuthenticationForm):
 
     def clean(self):
         cd = self.cleaned_data
-        if not User.objects.filter(username=cd["username"]).exists():
+        try:
+            user = User.objects.get(username=cd["username"])
+            if not user.check_password(cd["password"]):
+                self.add_error("password", "Wrong password")
+        except Exception:
             self.add_error("username", "No such user")
-        elif not User.objects.filter(password=cd["password"]).exists():
-            self.add_error("password", "Wrong password")
+        super(LoginForm, self).clean()
         return cd
 
 
