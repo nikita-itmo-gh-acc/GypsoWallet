@@ -16,7 +16,7 @@ from django.urls import reverse_lazy
 
 
 class Home(View):
-    template_name = "exchange/mainmenu.html"
+    template_name = "exchange/index.html"
 
     def get(self, request, *args, **kwargs):
         u = None
