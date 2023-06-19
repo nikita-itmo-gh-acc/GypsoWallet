@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block title %}
-    <title>Профиль</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{% static "exchange/css/cryptostyle.css" %}"/>
 {% endblock title %}
 
@@ -23,9 +23,12 @@
                 <div class="price_table">
                     {% for item in crypto_data %}
                         <div class="price_item">
-                            {{ item }}
-                            <select name="days" id="{{ item }}_days"></select>
-                            <input type="submit" value="Применить" class="settings" name="{{ item }}" id="{{ item }}_settings">
+                            <h3>{{ item }}</h3>
+                            <div>
+                                Выберете количество дней:
+                                <select name="days" class="box" id="{{ item }}_days"></select>
+                            </div>
+                            <div><input type="submit" value="Применить" class="settings" name="{{ item }}" id="{{ item }}_settings"></div>
                         </div>
 
 <!--                        <input value="Применить" name="settings">-->

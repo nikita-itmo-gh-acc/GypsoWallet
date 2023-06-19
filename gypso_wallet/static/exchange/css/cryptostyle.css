@@ -186,6 +186,9 @@ html {
     height: 200px;
     border: 2px solid #4b6970;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .price_table {
@@ -244,4 +247,28 @@ html {
     padding: 7px;
     background-color: #68D8D6;
     border-radius: 15px;
+}
+
+.settings {
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #white;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid #999ea3;
+    cursor: pointer;
+}
+
+.settings:hover {
+    border: 2px solid #4b6970;
+}
+
+.box {
+    /*width: 40px;*/
+    height: 30px;
+    margin-left: 10px;
+    padding: 0px 5px 0px 5px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    /*appearance: none;*/
 }

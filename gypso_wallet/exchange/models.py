@@ -21,3 +21,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.name
+
+
+class Token(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    count = models.IntegerField(default=0)
+    profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name

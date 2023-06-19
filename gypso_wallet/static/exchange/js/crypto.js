@@ -27,10 +27,14 @@ $(document).ready(function() {
         success: (jsonResponse) => {
             let days = [];
             jsonResponse.coins.forEach(function(coin, i, coins) {
+                let first_option = new Option(0, 0);
+                let j = 0;
                 jsonResponse.options.forEach(option => {
+                     if (j == 0) {days.push(option);}
                      $(`#${coin}_days`).append(new Option(option, option));
+                     j++;
                 });
-                days.push(20);
+
             });
             makeCharts(jsonResponse.coins);
             loadAllCharts(days, jsonResponse.coins);

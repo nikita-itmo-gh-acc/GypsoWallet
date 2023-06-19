@@ -82,6 +82,15 @@ class ProfileView(View):
         return render(request, self.template_name, {"form": form, "user": request.user})
 
 
+@method_decorator(login_required, name='dispatch')
+class Market(View):
+    template_name = 'exchange/market.html'
+    global coins
+
+    def get(self, request):
+        return render(request, self.template_name, {"user": request.user, "crypto_data": coins, "title": "Биржа"})
+
+
 coins = ["bitcoin", "ethereum", "ripple", "litecoin", "binancecoin"]
 colors = {"bitcoin": "#8e5ea2",
           "ethereum": "#3e95cd",
@@ -96,7 +105,7 @@ class Crypto(View):
     global coins
 
     def get(self, request):
-        return render(request, self.template_name, {"user": request.user, "crypto_data": coins})
+        return render(request, self.template_name, {"user": request.user, "crypto_data": coins, "title": "Рынок"})
 
 
 def charts_data(request, coin, days):
@@ -134,6 +143,6 @@ def charts_data(request, coin, days):
 def charts_options(request):
     global coins
     return JsonResponse({
-        "options": list(range(7, 31)),
+        "options": list(range(7, 43)),
         "coins": coins
     })
