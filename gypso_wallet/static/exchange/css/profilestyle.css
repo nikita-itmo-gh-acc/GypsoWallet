@@ -153,8 +153,12 @@ body {
     background-color: #07BEB8;
 }
 
+.main_body {
+    height: 100%;
+}
 
 .main_container {
+    height: 100%;
     display: flex;
     justify-content: normal;
 }
@@ -365,4 +369,42 @@ body {
 
     background-color: #68D8D6;
     border-radius: 15px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.total_price {
+    margin-top: 20px;
+    /*border: 1px solid black;*/
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+
+ul {
+    position: absolute;
+    list-style-type: none;
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    /*border: 1px solid black;*/
+
+    list-style: none;
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ul li {
+    /*border: 1px solid black;*/
+    display: block;
+    padding: .6em .6em .6em 1.2em;
+    margin: .5em 0 .5em 0;
+    background: #D3D4DA;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
 }

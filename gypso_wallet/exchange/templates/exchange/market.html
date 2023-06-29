@@ -11,21 +11,51 @@
     <body>
 
     <div class="central_separator"></div>
+
     <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <?php echo $deleteMsg??''; ?>
-                <div class="table-responsive">
-                    <table class="table table-bordered" border="1px">
-                        <thead><tr>
-
-
-                        </thead>
-                    </table>
-                </div>
-            </div>
+        <input class="search_input" type="text" id="search" placeholder="Введите название валюты..">
+        <div class="table-responsive">
+            <table class="table-main" border="1px" id="main_table">
+                <tr class="tr-main">
+                    <th class="th-main">Название</th>
+                    <th class="th-main">Цена</th>
+                    <th class="th-main">Токены</th>
+                    <th class="th-main">Купить/Продать</th>
+                </tr>
+                {% for item in crypto_data %}
+                <tr class="tr-main">
+                    <td class="td-main"> {{item}} </td>
+                    <td class="td-main" id="{{item}}_price"></td>
+                    <td class="td-main" id="{{item}}_count"> </td>
+                    <td class="td-main">
+                        <button class="button-main-buy" id="{{item}}_buy">купить</button>
+                        <dialog id="{{item}}_buy_dialog">
+                            <div> покупка токенов {{item}} </div>
+                            <div> введите количество: </div>
+                            <div> <input id="{{item}}_buy_count" type="text" size="20">  </div>
+                            <div>
+                                <button id="{{item}}_buy_accept">купить</button>
+                                <button id="{{item}}_buy_close">отменить покупку</button>
+                            </div>
+                         </dialog>
+                        <button class="button-main-sell" id="{{item}}_sell">продать</button>
+                        <dialog id="{{item}}_sell_dialog">
+                            <div> продажа токенов {{item}} </div>
+                            <div> введите количество: </div>
+                            <div> <input id="{{item}}_sell_count" type="text" size="20">  </div>
+                            <div>
+                                <button id="{{item}}_sell_accept">продать</button>
+                                <button id="{{item}}_sell_close">отменить продажу</button>
+                            </div>
+                         </dialog>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
     </body>
+    <script src="{% static 'exchange/js/jquery-3.7.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'exchange/js/market.js' %}"> </script>
 
 {% endblock content %}

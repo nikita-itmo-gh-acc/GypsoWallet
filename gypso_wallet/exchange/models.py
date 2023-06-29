@@ -12,6 +12,7 @@ class Profile(models.Model):
     description = models.TextField(blank=True)
     photo = models.ImageField(blank=True)
     reg_date = models.DateTimeField(auto_now_add=True)
+    balance = models.IntegerField(default=500)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -24,7 +25,7 @@ class Profile(models.Model):
 
 
 class Token(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     count = models.IntegerField(default=0)
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
 

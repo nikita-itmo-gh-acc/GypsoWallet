@@ -50,8 +50,18 @@
 
                 <div class="main_separator"></div>
                 <div class="trade_history">
-                    <div class="history_title">История торговли</div>
-                    <div class="history"></div>
+                    <div class="history_title">Криптопортфель</div>
+                    <div class="history">
+                        <div class="total_price"> Суммарная стоимость активов - {{total_price}} USDT </div>
+                        <div class="total_price">
+                            <ul>
+                            {% for coin, data in prices.items %}
+                                <li>{{coin}} - актуальная цена: {{data.usd}} USDT <br>
+                                    в наличии: {{data.count}}  </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
