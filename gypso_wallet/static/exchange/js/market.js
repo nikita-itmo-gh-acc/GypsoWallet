@@ -47,7 +47,7 @@ function updateTokensCount(){
             for (coin in jsonResponse.coin_count) {
                 $(`#${coin}_count`).empty();
                 let div = document.createElement('div');
-                div.innerHTML = jsonResponse.coin_count[coin];
+                div.innerHTML = jsonResponse.coin_count[coin].toFixed(3);
                 $(`#${coin}_count`).append(div);
                 j++;
             }
@@ -66,6 +66,7 @@ function openModal(coin, price, type){
     document.getElementById(`${coin}_${type}_accept`).onclick = function () {
         get_balance_data(coin);
         let count_value = $(`#${coin}_${type}_count`).val();
+//        alert(count_value);
         let check = checkOperationAvailable(coin, price, count_value, type);
         if (check == 'available' && checkInputValid(count_value)){
             if (type == 'buy')
@@ -88,6 +89,8 @@ function openModal(coin, price, type){
             alert("операция невозможна, недостаточно токенов");
         } else if (check == 'balance_lack') {
             alert("операция невозможна, недостаточно средств");
+        } else {
+            alert("операция невозможна, неверный ввод");
         }
         dialog.close()
     }
@@ -149,7 +152,7 @@ $('#search').keyup(function () {
 
 
 function checkInputValid(value){
-    return /^\d+$/.test(value);
+    return /^-?\d*(\.\d+)?$/.test(value);
 }
 
 

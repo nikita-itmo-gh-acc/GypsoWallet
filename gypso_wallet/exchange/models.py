@@ -26,7 +26,7 @@ class Profile(models.Model):
 
 class Token(models.Model):
     name = models.CharField(max_length=255)
-    count = models.IntegerField(default=0)
+    count = models.FloatField(default=0)
     profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
 
     def __str__(self):

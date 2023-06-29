@@ -364,7 +364,7 @@ body {
     width: 100%;
     height: 100%;
     min-height: 750px;
-    max-height: 1200px;
+    /*max-height: 1200px;*/
     max-width: 1900px;
 
     background-color: #68D8D6;
@@ -373,6 +373,7 @@ body {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    padding-bottom: 50px;
 }
 
 .total_price {
@@ -380,7 +381,12 @@ body {
     /*border: 1px solid black;*/
     display: flex;
     justify-content: center;
-    font-size: 18px;
+    font-size: 20px;
+}
+
+#all_price {
+    font-size: 25px;
+    margin-bottom: -15px;
 }
 
 ul {
@@ -403,8 +409,9 @@ ul li {
     display: block;
     padding: .6em .6em .6em 1.2em;
     margin: .5em 0 .5em 0;
-    background: #D3D4DA;
-    color: #444;
+    background: #C4FFF9;
+    border: 1px solid #057672;
+    color: #000;
     text-decoration: none;
     transition: all .3s ease-out;
 }

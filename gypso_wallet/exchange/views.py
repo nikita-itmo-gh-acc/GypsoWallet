@@ -124,7 +124,7 @@ class Market(View):
         print("hello im working")
         data = json.loads(json.dumps(request.POST))
         print(data, request.user)
-        type_, count, price = data["type"], int(data["count"]), float(data["price"])
+        type_, count, price = data["type"], float(data["count"]), float(data["price"])
         try:
             token = Token.objects.get(profile=request.user.profile.id, name=data['coin'])
             if type_ == "buy":
