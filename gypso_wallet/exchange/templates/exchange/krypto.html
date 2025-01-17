@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="../styles/kryptostyle.css">
+
+</head>
+<body>
+<header class="header">
+    <div class="header_container">
+        <div class="header_inner">
+            <a href="mainmenu.html">
+                <div class="header_logo"></div></a>
+            <div class="header_title">Рынок</div>
+            <div class="header_profile">
+                <div class="header_balance">Баланс: 500$</div>
+                <div class="header_separator"></div>
+                <a href="./profile.html">
+                    <div class="header_avatar"></div></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="central_separator"></div>
+
+<div class="main_body">
+    <div class="main_container">
+        <div class="price_list">
+            <div class="price_title">Цены</div>
+            <div class="price_table"></div>
+            {% block prices %}
+            {for coin in coins %}
+            <button type="button" name="coin.name coin.price">Я кнопка</button>
+
+        </div>
+        <div class="main_separator"></div>
+        <div class="graph_list">
+            <div class="graph_title">Графики</div>
+            <div class="graph_table"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
