@@ -10,9 +10,11 @@ body {
     font-family: "Montserrat";
 }
 
+/*
 html {
     height: 100%;
 }
+*/
 
 
 .header_container {
@@ -163,6 +165,7 @@ html {
     height: 100%;
     display: flex;
     justify-content: normal;
+    position: relative;
 }
 
 .price_list {
@@ -171,8 +174,9 @@ html {
     min-height: 688px;
     float: top;
     margin: 50px 60px 0 50px;
-    position: relative;
+    /*position: absolute;*/
     text-align: center;
+
 }
 
 .price_title {
@@ -214,12 +218,9 @@ html {
 }
 
 .graph_list {
-    width: 100%;
+    /*position: absolute;*/
+    width: 60%;
     height: 100%;
-    min-height: 688px;
-    /*max-height: 1000px;*/
-    max-width: 1900px;
-
     text-align: center;
     margin-top: 50px;
     margin-inline: 50px;
@@ -231,6 +232,7 @@ html {
 }
 
 .graph_item {
+    height: 200px;
     margin: 10px;
     padding: 5px;
     max-height: 200px;

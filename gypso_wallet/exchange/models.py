@@ -6,9 +6,9 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # username = models.CharField(max_length=255)
-    # email = models.CharField(max_length=255, unique=True)
-    # password = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     photo = models.ImageField(blank=True)
     reg_date = models.DateTimeField(auto_now_add=True)

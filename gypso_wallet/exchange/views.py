@@ -121,9 +121,7 @@ class Market(View):
         return render(request, self.template_name, {"user": request.user, "crypto_data": coins, "vs_currencies": vs_currencies, "title": "Биржа"})
 
     def post(self, request):
-        print("hello im working")
         data = json.loads(json.dumps(request.POST))
-        print(data, request.user)
         type_, count, price = data["type"], float(data["count"]), float(data["price"])
         try:
             token = Token.objects.get(profile=request.user.profile.id, name=data['coin'])
@@ -174,7 +172,6 @@ def price_data(request):
         if response.status_code == 429:
             return JsonResponse(request.session.get("last_available_price"))
         price_info = json.loads(response.text)
-        print(price_info)
         json_response = {
             "prices": price_info,
             "coins": coins
