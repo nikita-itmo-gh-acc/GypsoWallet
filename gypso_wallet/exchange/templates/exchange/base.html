@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        {% block title %} {% endblock title %}
+
+    </head>
+
+    <body>
+        <header class="header">
+        <div class="header_container">
+            <div class="header_inner">
+                <a href="/">
+                    <div class="header_logo"></div></a>
+                <div class="header_title">{{ head_title }}</div>
+                {% if request.user.is_authenticated %}
+                    <div class="header_profile">
+                        <div class="header_logout"> <a href="../logout" class="header_link"> Выход </a> </div>
+                        <div class="header_balance" id="balance">Баланс: {{request.user.profile.balance}}$</div>
+                        <div class="header_separator"></div>
+                        <div class="header_avatar">
+                        <a href="../profile/">
+                                {% if request.user.profile.photo %}
+                                    <img class="header_avatar_base" src="{{ user.profile.photo.url }}">
+                                {% else %}
+                                    <div class="header_stock_im"></div>
+                                {% endif %}
+                        </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="header_auth">
+                        <div class="header_reg"> <a href="../registration" class="header_link"> Регистрация </a> </div>
+                        <div class="header_separator"></div>
+                        <div class="header_log"> <a href="../login" class="header_link"> Вход </a> </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% block header %}{% endblock header %}
+        </header>
+        {% block content%}{% endblock content %}
+    </body>
+</html>

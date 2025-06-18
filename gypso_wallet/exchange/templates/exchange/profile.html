@@ -1,0 +1,69 @@
+{% extends "exchange/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Профиль</title>
+    <link rel="stylesheet" type="text/css" href="{% static "exchange/css/profilestyle.css" %}"/>
+{% endblock title %}
+
+
+{% block content %}
+    <body>
+        <div class="central_separator"></div>
+
+        <div class="main_body">
+            <div class="main_container">
+
+                <form method="post" enctype="multipart/form-data" id="profile_form">
+                    <div class="profile_list">
+                        {% if user.profile.photo %}
+                            <img class="profile_avatar_base" src="{{ user.profile.photo.url }}">
+                        {% else %}
+                            <div class="profile_avatar"></div>
+                        {% endif %}
+                        {% csrf_token %}
+                        <div class="download_avatar">
+
+                            <label class="download_avatar_label" for="{{ form.photo.id_for_label }}">
+                                {{ form.photo }}
+                                <span>Выберите аватар</span>
+                            </label>
+                            {{form.photo.errors}}
+                        </div>
+                        <div class="profile_about">
+                            <label for="{{ form.description.id_for_label }}">
+                                {{ form.description }}
+<!--    &lt;!&ndash;                            <textarea placeholder="О себе"></textarea>&ndash;&gt;-->
+                            </label>
+                            {{ form.description.errors }}
+                        </div>
+                        <div class="submit_about">
+
+                                <label class="submit_about_label">
+                                    <input type="submit">
+                                    <span>Сохранить</span>
+                                </label>
+
+                        </div>
+                 </div>
+                </form>
+
+                <div class="main_separator"></div>
+                <div class="trade_history">
+                    <div class="history_title">Криптопортфель</div>
+                    <div class="history">
+                        <div class="total_price" id="all_price"> Суммарная стоимость активов - {{total_price}} USDT </div>
+                        <div class="total_price">
+                            <ul>
+                            {% for coin, data in prices.items %}
+                                <li>{{coin}} - актуальная цена: {{data.usd}} USDT <br>
+                                    в наличии: {{data.count}}  </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock content %}
